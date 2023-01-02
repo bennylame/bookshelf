@@ -4,6 +4,29 @@ import {Dialog as ReachDialog} from '@reach/dialog'
 // 🐨 create a button styled component here called "Button"
 // make it look nice and allow it to support a "variant" prop which can be
 // either "primary" or "secondary".
+
+const Button = styled.button`
+  padding: 10px 15px;
+  border: 0px;
+  background-color: ${props =>
+    props.variant !== 'secondary' ? 'rgb(63, 81, 181)' : 'rgb(241, 242, 247)'};
+  color: ${props => (props.variant !== 'secondary' ? 'white' : 'black')};
+  border-radius: 3px;
+  line-height: 1;
+`
+
+const FormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const Input = styled.input`
+  border-radius: 3px;
+  border: 1px solid #f1f1f4;
+  background-color: rgb(241, 242, 247);
+  padding: 8px 12px;
+`
+
 // 💰 don't forget to export it at the bottom!
 // 💰 In my final version, I style padding, border, lineHeight, and borderRadius
 //    the same for both types, and then change the background and color based
@@ -68,4 +91,4 @@ const Dialog = styled(ReachDialog)({
   },
 })
 
-export {CircleButton, Dialog}
+export {CircleButton, Dialog, Button, Input, FormGroup}
