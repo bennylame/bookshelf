@@ -8,6 +8,8 @@ import '@reach/dialog/styles.css'
 // 🐨 you'll also need to import the Logo component from './components/logo'
 import {Logo} from 'components/logo'
 
+import LoginForm from 'components/LoginForm'
+
 // 🐨 create an App component here and render the logo, the title ("Bookshelf"), a login button, and a register button.
 // 🐨 for fun, you can add event handlers for both buttons to alert that the button was clicked
 
@@ -20,18 +22,28 @@ const App = () => {
   const openRegisterDialog = () => setShowRegisterDialog(true)
   const closeRegisterDialog = () => setShowRegisterDialog(false)
 
+  const handleSubmit = e => {
+    e.preventDefault()
+
+    console.log('login', {
+      username: e.target.username.value,
+      password: e.target.password.value,
+    })
+  }
+
   const LoginDialog = () => {
     return (
-      <Dialog aria-label="login modal">
+      <Dialog aria-label="login modal" isOpen={showLoginDialog}>
         <button onClick={closeLoginDialog}>Close</button>
         <h3>Login Dialog</h3>
+        <LoginForm onSubmit={handleSubmit} buttonText="Login" />
       </Dialog>
     )
   }
 
   const RegisterDialog = () => {
     return (
-      <Dialog aria-label="register modal">
+      <Dialog aria-label="register modal" isOpen={showRegisterDialog}>
         <button onClick={closeRegisterDialog}>Close</button>
         <h3>Register Dialog</h3>
       </Dialog>
@@ -49,8 +61,8 @@ const App = () => {
         <button onClick={openRegisterDialog}>Register</button>
       </div>
 
-      {showLoginDialog ? <LoginDialog /> : null}
-      {showRegisterDialog && <RegisterDialog />}
+      <LoginDialog />
+      <RegisterDialog />
     </div>
   )
 }
