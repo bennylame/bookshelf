@@ -2,8 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const LoginForm = ({onSubmit, buttonText = 'default string'}) => {
+  const handleSubmit = e => {
+    e.preventDefault()
+    const {username, password} = e.target.elements
+
+    onSubmit({
+      username: username.value,
+      password: password.value,
+    })
+  }
+
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username</label>
         <input type="text" id="username"></input>

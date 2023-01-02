@@ -22,13 +22,12 @@ const App = () => {
   const openRegisterDialog = () => setShowRegisterDialog(true)
   const closeRegisterDialog = () => setShowRegisterDialog(false)
 
-  const handleSubmit = e => {
-    e.preventDefault()
+  function login(formData) {
+    console.log('login', formData)
+  }
 
-    console.log('login', {
-      username: e.target.username.value,
-      password: e.target.password.value,
-    })
+  function register(formData) {
+    console.log('register', formData)
   }
 
   const LoginDialog = () => {
@@ -36,7 +35,7 @@ const App = () => {
       <Dialog aria-label="login modal" isOpen={showLoginDialog}>
         <button onClick={closeLoginDialog}>Close</button>
         <h3>Login Dialog</h3>
-        <LoginForm onSubmit={handleSubmit} buttonText="Login" />
+        <LoginForm onSubmit={login} buttonText="Login" />
       </Dialog>
     )
   }
@@ -46,6 +45,7 @@ const App = () => {
       <Dialog aria-label="register modal" isOpen={showRegisterDialog}>
         <button onClick={closeRegisterDialog}>Close</button>
         <h3>Register Dialog</h3>
+        <LoginForm onSubmit={register} buttonText="Register" />
       </Dialog>
     )
   }
